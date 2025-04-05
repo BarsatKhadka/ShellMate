@@ -39,7 +39,7 @@ def generate_shell_command(client,user_input):
             temperature=config.OPENAI_TEMPERATURE
         )
         command = response.choices[0].message.content.strip()
-        return command
+        return command , cwd
     except Exception as e:
         print(f"❌ An error occurred: {e}")
         return None

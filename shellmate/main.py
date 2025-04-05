@@ -30,9 +30,9 @@ def ask_user(client, SHELL_NAME):
         elif user_input.lower() == "clear":
             clear_terminal()
         else:
-            command = generate_shell_command(client, user_input)
+            command, updated_cwd = generate_shell_command(client, user_input)
             if command:
-                print(f"ShellMate @{SHELL_NAME} > {os.getcwd()}$ {command}")
+                print(f"ShellMate @{SHELL_NAME} > {updated_cwd}$ {command}")
             else:
                 print("❌ Failed to generate shell command.")
 
