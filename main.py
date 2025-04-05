@@ -1,42 +1,17 @@
 import typer
-import os
-from openai import OpenAI
-
+from utils import check_api_key
 app = typer.Typer()
 
 @app.command()
 def shellmate():
-    if check_api_key():
-        print("Type your command in natural language and I will convert it to a shell command.")
-        print("Type exit() to quit.")
+    api_key_valid, client = check_api_key()
+    if api_key_valid:
+        print("🤖 Welcome to ShellMate!")
+        print("ShellMate > Type your command in natural language, and I will convert it to a shell command.")
+        print("💡 Tip: Type 'exit()' to quit the application.")
 
 
 
-
-
-
-def check_api_key():
-    api_key = os.getenv("OPENAI_API_KEY")
-
-    if not api_key:
-        print("❌ OPENAI_API_KEY is not set.")
-        print("👉 Set it in your environment as shown in the README.")
-        return False
-
-    client = OpenAI(api_key=api_key)
-    try:
-        client.models.list()
-        print("✅  API key is valid.")
-        print("🤖 Welcome to shellmate!")
-        return True
-    except Exception as e:
-        if(e.code == 'invalid_api_key'):
-            print("❌ Invalid API key.")
-            print("👉 Check your API key and try again.")
-        else:
-            print("❌ An error occurred while validating the API key.")
-            print(f"Error details. {e}")
-        return False
     
     
     
