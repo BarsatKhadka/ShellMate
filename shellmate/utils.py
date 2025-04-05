@@ -1,5 +1,6 @@
 from openai import OpenAI
 import config
+import os
 
 def check_api_key():
     api_key = config.OPENAI_API_KEY
@@ -42,4 +43,11 @@ def generate_shell_command(client,user_input):
     except Exception as e:
         print(f"❌ An error occurred: {e}")
         return None
+    
+def clear_terminal():
+    if config.OS_NAME == "windows":
+        os.system("cls")
+    else:
+        os.system("clear")
+
 

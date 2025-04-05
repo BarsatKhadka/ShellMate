@@ -1,7 +1,10 @@
 import typer
+import config
+
+##Custom functions in utils.py
 from utils import check_api_key
 from utils import generate_shell_command
-import config
+from utils import clear_terminal
 
 app = typer.Typer()
 
@@ -22,6 +25,8 @@ def ask_user(client, SHELL_NAME):
         if user_input.lower() == "exit()":
             print("👋 Goodbye!")
             break
+        elif user_input.lower() == "clear":
+            clear_terminal()
         else:
             command = generate_shell_command(client, user_input)
             if command:
