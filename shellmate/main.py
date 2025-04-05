@@ -1,7 +1,7 @@
 import typer
 from utils import check_api_key
+from utils import generate_shell_command
 import config
-import os
 
 app = typer.Typer()
 
@@ -29,24 +29,7 @@ def ask_user(client, SHELL_NAME):
             else:
                 print("❌ Failed to generate shell command.")
 
-def generate_shell_command(client,user_input):
-    try:
-        cwd = os.getcwd()
-        system_prompt = config.SYSTEM_PROMPT.format(cwd=cwd)
-        
-        response = client.chat.completions.create(
-            model=config.DEFAULT_OPENAI_MODEL,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_input}
-            ],
-            temperature=config.OPENAI_TEMPERATURE
-        )
-        command = response.choices[0].message.content.strip()
-        return command
-    except Exception as e:
-        print(f"❌ An error occurred: {e}")
-        return None
+
         
 
 if __name__ == "__main__":
