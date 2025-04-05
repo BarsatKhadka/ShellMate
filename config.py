@@ -1,6 +1,11 @@
 import os
+import platform
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+SHELL_PATH = os.getenv("SHELL")
+OS_NAME = platform.system().lower()
+SHELL_NAME = os.path.basename(SHELL_PATH) if SHELL_PATH else OS_NAME
 
 # Default model 
 DEFAULT_OPENAI_MODEL = "gpt-3.5-turbo"

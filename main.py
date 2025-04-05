@@ -1,5 +1,6 @@
 import typer
 from utils import check_api_key
+import config
 
 app = typer.Typer()
 
@@ -11,11 +12,12 @@ def shellmate():
         print("ShellMate > Type your command in natural language, and I will convert it to a shell command.")
         print("💡 Tip: Type 'exit()' to quit the application.")
         
-        ask_user(client)
+        SHELL_NAME = config.SHELL_NAME
+        ask_user(client, SHELL_NAME)
 
-def ask_user(client):
+def ask_user(client, SHELL_NAME):
     while True:
-        user_input = input("ShellMate > ")
+        user_input = input(f"ShellMate ({SHELL_NAME}) > ")
         if user_input.lower() == "exit()":
             print("👋 Goodbye!")
             break
