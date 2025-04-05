@@ -21,8 +21,29 @@ def ask_user(client, SHELL_NAME):
         if user_input.lower() == "exit()":
             print("👋 Goodbye!")
             break
+        else:
+            command = generate_shell_command(client, user_input)
+            if command:
+                print(f"ShellMate ({SHELL_NAME}) > {command}")
+            else:
+                print("❌ Failed to generate shell command.")
 
-
+def generate_shell_command(client,user_input):
+    try:
+        response = client.chat.completions.create(
+            model=config.DEFAULT_OPENAI_MODEL,
+            messages=[
+                {"role": "system", "content": config.SYSTEM_PROMPT},
+                {"role": "user", "content": user_input}
+            ],
+            temperature=config.OPENAI_TEMPERATURE
+        )
+        command = response.choices[0].message.content.strip()
+        return command
+    except Exception as e:
+        print(f"❌ An error occurred: {e}")
+        return None
+        
 
 if __name__ == "__main__":
     app()
