@@ -7,7 +7,8 @@ app = typer.Typer()
 @app.command()
 def shellmate():
     if check_api_key():
-        print("Shellmate is running...")
+        print("Type your command in natural language and I will convert it to a shell command.")
+        print("Type exit() to quit.")
 
 
 
@@ -23,7 +24,8 @@ def check_api_key():
     client = OpenAI(api_key=api_key)
     try:
         client.models.list()
-        print("✅ API key is valid.")
+        print("✅  API key is valid.")
+        print("🤖 Welcome to shellmate!")
         return True
     except Exception as e:
         if(e.code == 'invalid_api_key'):
