@@ -23,3 +23,5 @@ def check_api_key():
             print("❌ An error occurred while validating the API key.")
             print(f"Error details. {e}")
         return False , None
+    
+

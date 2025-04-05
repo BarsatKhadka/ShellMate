@@ -15,6 +15,7 @@ SYSTEM_PROMPT = (
     "Respond with only the command, without explanation. " 
     f"OS NAME: {OS_NAME}. "
     f"SHELL NAME: {SHELL_NAME}. "
+    "Current working directory: {cwd}"
     
 )
 
