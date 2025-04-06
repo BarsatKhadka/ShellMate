@@ -1,4 +1,4 @@
-import typer , config, os
+import typer , config.static_config as static_config , os
 
 ##Custom functions in utils.py
 from utils.general_utils import clear_terminal, intro_text
@@ -16,7 +16,7 @@ def shellmate():
 
 def ask_user(client):
     while True:
-        print(f"ShellMate @{config.SHELL_NAME} > ", end="")
+        print(f"ShellMate @{static_config.SHELL_NAME} > ", end="")
         user_input = input(f"{os.getcwd()}$ ")
 
         if user_input.lower() == "exit()":
@@ -27,7 +27,7 @@ def ask_user(client):
         else:
             command, updated_cwd = generate_shell_command(client, user_input)
             if command:
-                print(f"ShellMate @{config.SHELL_NAME} > {updated_cwd}$ {command}")
+                print(f"ShellMate @{static_config.SHELL_NAME} > {updated_cwd}$ {command}")
             else:
                 print("❌ Failed to generate shell command.")
 

@@ -1,9 +1,9 @@
 from openai import OpenAI
 import os
-import config
+import config.static_config as static_config 
 
 def check_api_key():
-    api_key = config.OPENAI_API_KEY
+    api_key = static_config.OPENAI_API_KEY
 
     if not api_key:
         print("❌ OPENAI_API_KEY is not set.")
@@ -28,15 +28,15 @@ def check_api_key():
 def generate_shell_command(client,user_input):
     try:
         cwd = os.getcwd()
-        system_prompt = config.SYSTEM_PROMPT.format(cwd=cwd)
+        system_prompt = static_config.SYSTEM_PROMPT.format(cwd=cwd)
         
         response = client.chat.completions.create(
-            model=config.DEFAULT_OPENAI_MODEL,
+            model=static_config.DEFAULT_OPENAI_MODEL,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_input}
             ],
-            temperature=config.OPENAI_TEMPERATURE
+            temperature=static_config.OPENAI_TEMPERATURE
         )
         command = response.choices[0].message.content.strip()
         return command , cwd

@@ -1,4 +1,4 @@
-import config
+import config.static_config as static_config
 import os
 
 def intro_text():
@@ -8,7 +8,7 @@ def intro_text():
 
 
 def clear_terminal():
-    if config.OS_NAME == "windows":
+    if static_config.OS_NAME == "windows":
         os.system("cls")
     else:
         os.system("clear")
