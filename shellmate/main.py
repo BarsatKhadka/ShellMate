@@ -1,12 +1,8 @@
-import typer
-import config
-import os
+import typer , config, os
 
 ##Custom functions in utils.py
-from utils import check_api_key
-from utils import generate_shell_command
-from utils import clear_terminal
-from utils import intro_text
+from utils.general_utils import clear_terminal, intro_text
+from utils.openai_utils import check_api_key, generate_shell_command
 
 app = typer.Typer()
 
@@ -34,9 +30,6 @@ def ask_user(client):
                 print(f"ShellMate @{config.SHELL_NAME} > {updated_cwd}$ {command}")
             else:
                 print("❌ Failed to generate shell command.")
-
-
-        
 
 if __name__ == "__main__":
     app()
