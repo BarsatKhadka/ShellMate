@@ -21,3 +21,6 @@ SYSTEM_PROMPT = (
 
 OPENAI_TEMPERATURE = 0
 DEBUG_MODE = False
+
+## Auto execute the command
+AUTO_EXECUTE = False
