@@ -10,7 +10,7 @@ DEFAULT_RUNTIME_CONFIG = {
 }
 
 
-def no_config_dir_exists():
+def is_first_run():
     if not os.path.exists(RUNTIME_CONFIG_DIR):
         os.makedirs(RUNTIME_CONFIG_DIR)
         print(f"📁 Created config folder: {RUNTIME_CONFIG_DIR}")
