@@ -28,3 +28,11 @@ def get_auto_execute():
         is_first_run()
     with open(RUNTIME_CONFIG_PATH,"r") as f:
         return json.load(f).get("AUTO_EXECUTE",False)
+    
+def toggle_auto_execute():
+    with open(RUNTIME_CONFIG_PATH,"r+") as f:
+        current_config = json.load(f)
+        current_config["AUTO_EXECUTE"] = not current_config.get("AUTO_EXECUTE",False)
+        f.seek(0)
+        f.truncate()
+        json.dump(current_config, f)
