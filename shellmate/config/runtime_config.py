@@ -9,7 +9,6 @@ DEFAULT_RUNTIME_CONFIG = {
     "AUTO_EXECUTE": False,
 }
 
-
 def is_first_run():
     if not os.path.exists(RUNTIME_CONFIG_DIR):
         os.makedirs(RUNTIME_CONFIG_DIR)
@@ -25,5 +24,7 @@ def is_first_run():
         return False
 
 def get_auto_execute():
+    if not os.path.exists(RUNTIME_CONFIG_PATH):
+        is_first_run()
     with open(RUNTIME_CONFIG_PATH,"r") as f:
         return json.load(f).get("AUTO_EXECUTE",False)

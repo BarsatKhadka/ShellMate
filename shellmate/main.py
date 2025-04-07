@@ -29,9 +29,13 @@ def ask_user(client):
         else:
             command, updated_cwd = generate_shell_command(client, user_input)
             if command:
-                print(f"ShellMate @{static_config.SHELL_NAME} > {updated_cwd}$ {command}")
+                handle_generated_command(command, updated_cwd)  
             else:
                 print("❌ Failed to generate shell command.")
+
+def handle_generated_command(command,updated_cwd):
+    print(f"ShellMate @{static_config.SHELL_NAME} > {updated_cwd}$ {command}")
+
 
 if __name__ == "__main__":
     app()
