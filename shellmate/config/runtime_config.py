@@ -23,4 +23,7 @@ def is_first_run():
     else:
         print(f"✅Config file exists on path: {RUNTIME_CONFIG_PATH}\n")
         return False
-    
+
+def get_auto_execute():
+    with open(RUNTIME_CONFIG_PATH,"r") as f:
+        return json.load(f).get("AUTO_EXECUTE",False)

@@ -3,7 +3,7 @@ import typer , config.static_config as static_config , os
 ##Custom functions in utils.py
 from utils.general_utils import clear_terminal, intro_text
 from utils.openai_utils import check_api_key, generate_shell_command
-from config.runtime_config import is_first_run 
+from config.runtime_config import is_first_run , get_auto_execute
 
 app = typer.Typer()
 
