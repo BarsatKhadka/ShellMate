@@ -12,6 +12,7 @@ def shellmate():
     api_key_valid, client = check_api_key()
 
     if api_key_valid:
+        ## If no config dir exists, create it and show intro text
         if no_config_dir_exists(): intro_text()
         ask_user(client)
 
