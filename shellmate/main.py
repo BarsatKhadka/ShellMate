@@ -34,7 +34,17 @@ def ask_user(client):
                 print("❌ Failed to generate shell command.")
 
 def handle_generated_command(command,updated_cwd):
-    print(f"ShellMate @{static_config.SHELL_NAME} > {updated_cwd}$ {command}")
+    if get_auto_execute():
+        os.system(command)
+    else:
+        print(f"Generated command: {command}")
+        print("💡 Type 'y' to execute, or 'n' to skip.")
+        user_response = input(f"{updated_cwd}$ ")
+
+        if user_response.lower() == "y":
+            os.system(command)
+        else:
+            print("❌ Command execution skipped.")
 
 
 if __name__ == "__main__":
