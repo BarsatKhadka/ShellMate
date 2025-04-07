@@ -36,3 +36,4 @@ def toggle_auto_execute():
         f.seek(0)
         f.truncate()
         json.dump(current_config, f)
+        print(f"🔄 Auto-execute mode is now {'enabled' if current_config['AUTO_EXECUTE'] else 'disabled'}.")
