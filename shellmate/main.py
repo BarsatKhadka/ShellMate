@@ -1,4 +1,5 @@
-import typer , config.static_config as static_config , os
+import  config.static_config as static_config 
+import subprocess , os , typer
 
 ##Custom functions in utils.py
 from utils.general_utils import clear_terminal, intro_text
@@ -37,14 +38,16 @@ def ask_user(client):
 
 def handle_generated_command(command,updated_cwd):
     if get_auto_execute():
-        os.system(command)
+        subprocess.run(command, shell=True)
     else:
         print(f"Generated command: {command}")
         print("💡 Type 'y' to execute, or 'n' to skip.")
         user_response = input(f"{updated_cwd}$ ")
 
         if user_response.lower() == "y":
-            os.system(command)
+            subprocess.run(command,shell=True)
+        elif user_response.lower() == "clear":
+            clear_terminal()
         else:
             print("❌ Command execution skipped.")
 

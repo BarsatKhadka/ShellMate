@@ -16,7 +16,9 @@ SYSTEM_PROMPT = (
     f"OS NAME: {OS_NAME}. "
     f"SHELL NAME: {SHELL_NAME}. "
     "Current working directory: {cwd}"
-    
+    "IMPORTANT: If the command uses 'alias', 'export', 'source', or 'function', you MUST respond like this:\n"
+    "REQUIRES_REAL_SHELL: <the full command>\n"
+    "This format is required for compatibility with the user's environment."
 )
 
 OPENAI_TEMPERATURE = 0
