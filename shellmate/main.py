@@ -3,6 +3,7 @@ import typer , config.static_config as static_config , os
 ##Custom functions in utils.py
 from utils.general_utils import clear_terminal, intro_text
 from utils.openai_utils import check_api_key, generate_shell_command
+from config.runtime_config import no_config_dir_exists
 
 app = typer.Typer()
 
@@ -11,7 +12,7 @@ def shellmate():
     api_key_valid, client = check_api_key()
 
     if api_key_valid:
-        intro_text()
+        if no_config_dir_exists(): intro_text()
         ask_user(client)
 
 def ask_user(client):
