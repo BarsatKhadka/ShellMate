@@ -1,5 +1,6 @@
 import config.static_config as static_config
 import os
+import shutil
 
 def intro_text():
     print("🤖 Welcome to ShellMate!")
@@ -12,3 +13,8 @@ def clear_terminal():
         os.system("cls")
     else:
         os.system("clear")
+
+def is_direct_shell_command(user_input):
+    command = user_input.strip().split(" ")[0]
+    return shutil.which(command) is not None
+
